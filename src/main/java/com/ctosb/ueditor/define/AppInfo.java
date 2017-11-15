@@ -1,4 +1,4 @@
-package com.baidu.ueditor.define;
+package com.ctosb.ueditor.define;
 
 import java.util.HashMap;
 import java.util.Map;

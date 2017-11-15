@@ -1,11 +1,4 @@
-package com.baidu.ueditor.upload;
-
-import com.baidu.ueditor.ConfigManager;
-import com.baidu.ueditor.PathFormat;
-import com.baidu.ueditor.define.AppInfo;
-import com.baidu.ueditor.define.BaseState;
-import com.baidu.ueditor.define.FileType;
-import com.baidu.ueditor.define.State;
+package com.ctosb.ueditor.upload;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,6 +13,13 @@ import org.apache.commons.fileupload.FileItemStream;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+
+import com.ctosb.ueditor.ConfigManager;
+import com.ctosb.ueditor.PathFormat;
+import com.ctosb.ueditor.define.AppInfo;
+import com.ctosb.ueditor.define.BaseState;
+import com.ctosb.ueditor.define.FileType;
+import com.ctosb.ueditor.define.State;
 
 public class BinaryUploader {
 

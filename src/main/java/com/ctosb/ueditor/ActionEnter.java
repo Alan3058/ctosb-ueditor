@@ -1,16 +1,16 @@
-package com.baidu.ueditor;
+package com.ctosb.ueditor;
 
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.baidu.ueditor.define.ActionMap;
-import com.baidu.ueditor.define.AppInfo;
-import com.baidu.ueditor.define.BaseState;
-import com.baidu.ueditor.define.State;
-import com.baidu.ueditor.hunter.FileManager;
-import com.baidu.ueditor.hunter.ImageHunter;
-import com.baidu.ueditor.upload.Uploader;
+import com.ctosb.ueditor.define.ActionMap;
+import com.ctosb.ueditor.define.AppInfo;
+import com.ctosb.ueditor.define.BaseState;
+import com.ctosb.ueditor.define.State;
+import com.ctosb.ueditor.hunter.FileManager;
+import com.ctosb.ueditor.hunter.ImageHunter;
+import com.ctosb.ueditor.upload.Uploader;
 
 public class ActionEnter {
 	

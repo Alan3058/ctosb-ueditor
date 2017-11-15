@@ -1,8 +1,4 @@
-package com.baidu.ueditor.upload;
-
-import com.baidu.ueditor.define.AppInfo;
-import com.baidu.ueditor.define.BaseState;
-import com.baidu.ueditor.define.State;
+package com.ctosb.ueditor.upload;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -12,6 +8,10 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import org.apache.commons.io.FileUtils;
+
+import com.ctosb.ueditor.define.AppInfo;
+import com.ctosb.ueditor.define.BaseState;
+import com.ctosb.ueditor.define.State;
 
 public class StorageManager {
 	public static final int BUFFER_SIZE = 8192;

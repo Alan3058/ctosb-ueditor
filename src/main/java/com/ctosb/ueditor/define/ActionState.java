@@ -1,4 +1,4 @@
-package com.baidu.ueditor.define;
+package com.ctosb.ueditor.define;
 
 public enum ActionState {
 	UNKNOW_ERROR

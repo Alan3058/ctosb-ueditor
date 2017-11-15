@@ -1,4 +1,4 @@
-package com.baidu.ueditor.hunter;
+package com.ctosb.ueditor.hunter;
 
 import java.io.File;
 import java.util.Arrays;
@@ -7,11 +7,11 @@ import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
 
-import com.baidu.ueditor.PathFormat;
-import com.baidu.ueditor.define.AppInfo;
-import com.baidu.ueditor.define.BaseState;
-import com.baidu.ueditor.define.MultiState;
-import com.baidu.ueditor.define.State;
+import com.ctosb.ueditor.PathFormat;
+import com.ctosb.ueditor.define.AppInfo;
+import com.ctosb.ueditor.define.BaseState;
+import com.ctosb.ueditor.define.MultiState;
+import com.ctosb.ueditor.define.State;
 
 public class FileManager {
 

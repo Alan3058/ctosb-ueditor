@@ -1,4 +1,4 @@
-package com.baidu.ueditor.define;
+package com.ctosb.ueditor.define;
 
 /**
  * 处理状态接口

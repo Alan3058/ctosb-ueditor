@@ -1,8 +1,9 @@
-package com.baidu.ueditor.upload;
+package com.ctosb.ueditor.upload;
 
-import com.baidu.ueditor.define.State;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
+
+import com.ctosb.ueditor.define.State;
 
 public class Uploader {
 	private HttpServletRequest request = null;

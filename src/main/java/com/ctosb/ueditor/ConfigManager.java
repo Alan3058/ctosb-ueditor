@@ -1,4 +1,4 @@
-package com.baidu.ueditor;
+package com.ctosb.ueditor;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.baidu.ueditor.define.ActionMap;
+import com.ctosb.ueditor.define.ActionMap;
 
 /**
  * 配置管理器

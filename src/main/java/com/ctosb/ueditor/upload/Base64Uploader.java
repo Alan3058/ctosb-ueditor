@@ -1,17 +1,17 @@
-package com.baidu.ueditor.upload;
-
-import com.baidu.ueditor.ConfigManager;
-import com.baidu.ueditor.PathFormat;
-import com.baidu.ueditor.define.AppInfo;
-import com.baidu.ueditor.define.BaseState;
-import com.baidu.ueditor.define.FileType;
-import com.baidu.ueditor.define.State;
+package com.ctosb.ueditor.upload;
 
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.codec.binary.Base64;
+
+import com.ctosb.ueditor.ConfigManager;
+import com.ctosb.ueditor.PathFormat;
+import com.ctosb.ueditor.define.AppInfo;
+import com.ctosb.ueditor.define.BaseState;
+import com.ctosb.ueditor.define.FileType;
+import com.ctosb.ueditor.define.State;
 
 public final class Base64Uploader {
 
