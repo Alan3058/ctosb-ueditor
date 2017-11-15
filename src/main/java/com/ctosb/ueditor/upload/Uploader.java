@@ -1,11 +1,13 @@
-package com.ctosb.ueditor.upload;
 
-import java.util.Map;
-import javax.servlet.http.HttpServletRequest;
+package com.ctosb.ueditor.upload;
 
 import com.ctosb.ueditor.define.State;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
+
 public class Uploader {
+
 	private HttpServletRequest request = null;
 	private Map<String, Object> conf = null;
 
@@ -15,16 +17,12 @@ public class Uploader {
 	}
 
 	public final State doExec() {
-		
 		State state = null;
-
 		if ("true".equals(this.conf.get("isBase64"))) {
-			state = Base64Uploader.save(this.request,
-					this.conf);
+			state = Base64Uploader.save(this.request, this.conf);
 		} else {
 			state = BinaryUploader.save(this.request, this.conf);
 		}
-
 		return state;
 	}
 }
