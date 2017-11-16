@@ -30,13 +30,14 @@ public class ActionEnter {
 	 * @author liliangang-1163
 	 * @since 1.0.0
 	 * @param request
-	 * @param rootPath
-	 * @param configFilePath
+	 * @param saveFileRootPath （默认为空字符）存储文件的根目录路径，设置为绝对路径，可以保存到非项目路径下，使得上传文件路径和项目脱离
+	 * @param configFilePath 配置文件路径+配置文件名称，相对项目的路径
 	 */
-	public ActionEnter(HttpServletRequest request, String rootPath, String configFilePath) {
+	public ActionEnter(HttpServletRequest request, String saveFileRootPath, String configFilePath) {
 		this.request = request;
 		this.actionType = request.getParameter("action");
-		this.configManager = ConfigManager.getInstance(rootPath, configFilePath);
+		saveFileRootPath = saveFileRootPath == null ? "" : saveFileRootPath;
+		this.configManager = ConfigManager.getInstance(saveFileRootPath, configFilePath);
 	}
 
 	public String exec() {

@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.ctosb.ueditor.define.ActionMap;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,13 +30,12 @@ public final class ConfigManager {
 	 * @date 2017/11/15 13:23
 	 * @author liliangang-1163
 	 * @since 1.0.0
-	 * @param rootPath
+	 * @param saveFileRootPath 存储文件的根目录路径，设置为绝对路径，可以保存到非项目路径下，使得上传文件路径和项目脱离
 	 * @param configFilePath 配置文件路径+配置文件名称，相对项目的路径
 	 * @throws IOException
 	 */
-	private ConfigManager(String rootPath, String configFilePath) throws IOException {
-		rootPath = rootPath.replace("\\", "/");
-		this.rootPath = rootPath;
+	private ConfigManager(String saveFileRootPath, String configFilePath) throws IOException {
+		this.rootPath = saveFileRootPath.replace("\\", "/");
 		// 读取配置文件内容
 		String configContent = this.readFile(this.getConfigFileInputStream(configFilePath));
 		try {
@@ -51,13 +51,13 @@ public final class ConfigManager {
 	 * @date 2017/11/15 13:15
 	 * @author liliangang-1163
 	 * @since 1.0.0
-	 * @param rootPath 服务器根路径
-	 * @param uri 当前访问的uri
+	 * @param saveFileRootPath 存储文件的根目录路径，设置为绝对路径，可以保存到非项目路径下，使得上传文件路径和项目脱离
+	 * @param configFilePath 配置文件路径+配置文件名称，相对项目的路径
 	 * @return 配置管理器实例或者null
 	 */
-	public static ConfigManager getInstance(String rootPath, String uri) {
+	public static ConfigManager getInstance(String saveFileRootPath, String configFilePath) {
 		try {
-			return new ConfigManager(rootPath, uri);
+			return new ConfigManager(saveFileRootPath, configFilePath);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -139,6 +139,23 @@ public final class ConfigManager {
 		conf.put("savePath", savePath);
 		conf.put("rootPath", this.rootPath);
 		return conf;
+	}
+
+	/**
+	 * Get rootPath from request,if not,find it from conf map.
+	 * @param request
+	 * @param conf
+	 * @return
+	 * @author Ternence
+	 * @create 2015年1月31日
+	 */
+	public static String getRootPath(HttpServletRequest request, Map<String, Object> conf) {
+		Object rootPath = request.getAttribute("rootPath");
+		if (rootPath != null) {
+			return rootPath + "" + File.separatorChar;
+		} else {
+			return conf.get("rootPath") + "";
+		}
 	}
 
 	/**

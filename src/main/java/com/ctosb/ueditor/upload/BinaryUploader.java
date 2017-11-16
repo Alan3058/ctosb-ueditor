@@ -1,6 +1,7 @@
 
 package com.ctosb.ueditor.upload;
 
+import com.ctosb.ueditor.ConfigManager;
 import com.ctosb.ueditor.PathFormat;
 import com.ctosb.ueditor.define.AppInfo;
 import com.ctosb.ueditor.define.BaseState;
@@ -41,7 +42,7 @@ public class BinaryUploader {
 			// 针对springmvc请求做处理，否则造旧处理
 			MultipartFile upFile = ((MultipartHttpServletRequest) request).getFile((String) conf.get("fieldName"));
 			try {
-				return save(upFile.getOriginalFilename(), upFile.getInputStream(), conf);
+				return save(request, upFile.getOriginalFilename(), upFile.getInputStream(), conf);
 			} catch (IOException e) {
 				return new BaseState(false, AppInfo.IO_ERROR);
 			}
@@ -63,7 +64,7 @@ public class BinaryUploader {
 			if (fileStream == null) {
 				return new BaseState(false, AppInfo.NOTFOUND_UPLOAD_DATA);
 			}
-			return save(fileStream.getName(), fileStream.openStream(), conf);
+			return save(request, fileStream.getName(), fileStream.openStream(), conf);
 		} catch (FileUploadException e) {
 			return new BaseState(false, AppInfo.PARSE_REQUEST_ERROR);
 		} catch (IOException e) {
@@ -71,8 +72,8 @@ public class BinaryUploader {
 		}
 	}
 
-	private static State save(String originFileName, InputStream inputStream, Map<String, Object> conf)
-			throws IOException {
+	private static State save(HttpServletRequest request, String originFileName, InputStream inputStream,
+			Map<String, Object> conf) throws IOException {
 		String savePath = (String) conf.get("savePath");
 		String suffix = FileType.getSuffixByFilename(originFileName);
 		originFileName = originFileName.substring(0, originFileName.length() - suffix.length());
@@ -82,7 +83,11 @@ public class BinaryUploader {
 			return new BaseState(false, AppInfo.NOT_ALLOW_FILE_TYPE);
 		}
 		savePath = PathFormat.parse(savePath, originFileName);
-		State storageState = StorageManager.saveFileByInputStream(inputStream, savePath, maxSize);
+		// 获取保存文件的根目录
+		String rootPath = ConfigManager.getRootPath(request, conf);
+		// 保存文件的绝对路径
+		String physicalPath = rootPath + savePath;
+		State storageState = StorageManager.saveFileByInputStream(inputStream, physicalPath, maxSize);
 		inputStream.close();
 		if (storageState.isSuccess()) {
 			storageState.putInfo("url", PathFormat.format(savePath));
