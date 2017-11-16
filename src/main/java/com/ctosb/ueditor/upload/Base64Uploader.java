@@ -1,7 +1,6 @@
 
 package com.ctosb.ueditor.upload;
 
-import com.ctosb.ueditor.ConfigManager;
 import com.ctosb.ueditor.PathFormat;
 import com.ctosb.ueditor.define.AppInfo;
 import com.ctosb.ueditor.define.BaseState;
@@ -25,9 +24,7 @@ public final class Base64Uploader {
 		String suffix = FileType.getSuffix("JPG");
 		String savePath = PathFormat.parse((String) conf.get("savePath"), (String) conf.get("filename"));
 		savePath = savePath + suffix;
-		String rootPath = ConfigManager.getRootPath(request, conf);
-		String physicalPath = rootPath + savePath;
-		State storageState = StorageManager.saveBinaryFile(data, physicalPath);
+		State storageState = StorageManager.saveBinaryFile(data, savePath);
 		if (storageState.isSuccess()) {
 			storageState.putInfo("url", PathFormat.format(savePath));
 			storageState.putInfo("type", suffix);

@@ -12,21 +12,31 @@ import com.ctosb.ueditor.upload.Uploader;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
+/**
+ * 入口类
+ * @date 2017/11/15 13:24
+ * @author liliangang-1163
+ * @since 1.0.0
+ */
 public class ActionEnter {
 
 	private HttpServletRequest request = null;
-	private String rootPath = null;
-	private String contextPath = null;
 	private String actionType = null;
 	private ConfigManager configManager = null;
 
-	public ActionEnter(HttpServletRequest request, String rootPath) {
+	/**
+	 * 构造函数
+	 * @date 2017/11/15 13:40
+	 * @author liliangang-1163
+	 * @since 1.0.0
+	 * @param request
+	 * @param rootPath
+	 * @param configFilePath
+	 */
+	public ActionEnter(HttpServletRequest request, String rootPath, String configFilePath) {
 		this.request = request;
-		this.rootPath = rootPath;
 		this.actionType = request.getParameter("action");
-		this.contextPath = request.getContextPath();
-		this.configManager = ConfigManager.getInstance(this.rootPath, this.contextPath,
-				request.getRequestURI().replace(request.getContextPath(), ""));
+		this.configManager = ConfigManager.getInstance(rootPath, configFilePath);
 	}
 
 	public String exec() {
